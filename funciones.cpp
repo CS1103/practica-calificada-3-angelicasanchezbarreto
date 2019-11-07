@@ -63,3 +63,17 @@ int mayor_importe(const map<string, int> &aliasimpor)
     }
     return mayor;
 }
+
+int prom(const map<string, int> &aliasimpor){
+    auto iter = aliasimpor.begin();
+    int sum = 0;
+    int prom = 0;
+    for(auto it = iter; it != aliasimpor.end(); ++it)
+    {
+        sum += it->second;
+    }
+
+    prom = sum/aliasimpor.size();
+
+    return prom;
+}

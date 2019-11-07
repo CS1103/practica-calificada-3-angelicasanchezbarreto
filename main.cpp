@@ -14,7 +14,7 @@ int main() {
 
     leer(productos,aliasimpor);
 
-    
+
 
     //CREAR UN NUEVO ARCHIVO
     //ofstream archivo_salida("resultado.txt");    // Se abre el archivo para escribir.
