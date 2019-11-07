@@ -1,7 +1,6 @@
 //
 // Created by lica-pc on 11/7/19.
 //
-#include <ctype.h>
 #include <list>
 #include <iostream>
 #include <string>
@@ -9,24 +8,22 @@
 
 using namespace std;
 
-void leer(list<string> productos, map<string,int> aliasimpor){
+auto leer(list<string> productos, map<string,int> aliasimpor, const string &file_name ){
     string alias0;
     int importe0 = 0;
     string producto0;
 
-
-    ifstream file_subasta("bid_example.txt");
+    ifstream file_subasta(file_name);
     if(!file_subasta.is_open()){
         cout << "ERROR"<<endl;
     }
     else {
-
         do {
             getline(file_subasta, producto0);
             productos.push_back(producto0);
             cout<<producto0<<endl;
             while (file_subasta >> alias0 >> importe0) {
-                aliasimpor[alias0] = importe0; // input them into the map
+                aliasimpor[alias0] = importe0;
             }
         } while (!isupper(producto0[0]));
 
@@ -37,6 +34,7 @@ void leer(list<string> productos, map<string,int> aliasimpor){
     for (auto &p : aliasimpor) {
         cout << p.first << " " << p.second << endl;
     }
+    return aliasimpor;
 }
 
 
@@ -49,6 +47,7 @@ int menor_importe(const map<string,int> &aliasimporte)
         if(it->second < menor)
             menor = it->second;
     }
+
     return menor;
 }
 
@@ -76,4 +75,17 @@ int prom(const map<string, int> &aliasimpor){
     prom = sum/aliasimpor.size();
 
     return prom;
+}
+
+void sort(const map<string, int> &aliasimpor) {
+    int begin = menor_importe(aliasimpor);
+    int end = mayor_importe(aliasimpor);
+    for (int i = end; i >= begin; --i) {
+        for (auto it = aliasimpor.begin(); it != aliasimpor.end(); ++it) {
+            if (it->second == i) {
+                cout << it->first << "\t" << it->second << endl;
+            }
+        }
+    }
+
 }

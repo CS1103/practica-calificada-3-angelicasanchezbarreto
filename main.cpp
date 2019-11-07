@@ -9,10 +9,25 @@ using namespace std;
 
 int main() {
 
+    int menor,mayor,promedio;
+
     list<string> productos;
     map<string,int> aliasimpor;
 
-    leer(productos,aliasimpor);
+    aliasimpor = leer(productos,aliasimpor, "bid_example.txt");
+
+    cout<<endl;
+    menor = menor_importe(aliasimpor);
+    cout << menor;
+    cout<<endl;
+    mayor = mayor_importe(aliasimpor);
+    cout << mayor;
+    cout<<endl;
+    promedio = prom(aliasimpor);
+    cout<<promedio;
+    cout<<endl;
+
+    sort(aliasimpor);
 
 
 
